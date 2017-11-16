@@ -5,11 +5,11 @@
 package com.github.fartherp.dbtest.dbunit;
 
 import org.dbunit.DataSourceDatabaseTester;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
-import org.springframework.test.jdbc.SimpleJdbcTestUtils;
+import org.springframework.test.jdbc.JdbcTestUtils;
 
 import javax.sql.DataSource;
 
@@ -30,7 +30,7 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
      * @return the number of rows in the table
      */
     protected int countRowsInTable(String tableName) {
-        return SimpleJdbcTestUtils.countRowsInTable(getSimpleJdbcTemplate(), tableName);
+        return JdbcTestUtils.countRowsInTable(getSimpleJdbcTemplate(), tableName);
     }
 
     /**
@@ -42,7 +42,7 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
      * @return the total number of rows deleted from all specified tables
      */
     protected int deleteFromTables(String... names) {
-        return SimpleJdbcTestUtils.deleteFromTables(getSimpleJdbcTemplate(), names);
+        return JdbcTestUtils.deleteFromTables(getSimpleJdbcTemplate(), names);
     }
 
     public void beforeForDBUnit(String fileType, String[] tableNames) throws Exception {
@@ -67,7 +67,7 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
 
     protected abstract DataSource getDataSource();
 
-    protected abstract SimpleJdbcTemplate getSimpleJdbcTemplate();
+    protected abstract JdbcTemplate getSimpleJdbcTemplate();
 
     public abstract String getDbunitDir();
 

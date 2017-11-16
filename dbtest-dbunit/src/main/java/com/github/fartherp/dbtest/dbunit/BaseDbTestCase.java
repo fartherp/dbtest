@@ -4,8 +4,7 @@
 
 package com.github.fartherp.dbtest.dbunit;
 
-import com.github.fartherp.dbtest.dbunit.BaseBusinessTestCase;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
@@ -18,7 +17,7 @@ import javax.sql.DataSource;
  */
 @ContextConfiguration(locations = { "classpath:/conf/appContext-test.xml" }, inheritLocations = false)
 public class BaseDbTestCase extends BaseBusinessTestCase {
-    protected SimpleJdbcTemplate simpleJdbcTemplate;
+    protected JdbcTemplate simpleJdbcTemplate;
     private DataSource dataSource;
 
     @Override
@@ -27,14 +26,14 @@ public class BaseDbTestCase extends BaseBusinessTestCase {
     }
 
     @Override
-    protected SimpleJdbcTemplate getSimpleJdbcTemplate() {
+    protected JdbcTemplate getSimpleJdbcTemplate() {
         return simpleJdbcTemplate;
     }
 
     @Resource(name = "dataSource")
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        simpleJdbcTemplate = new SimpleJdbcTemplate(dataSource);
+        simpleJdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     public String getDbunitDir() {
