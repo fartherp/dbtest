@@ -6,6 +6,7 @@ package com.github.fartherp.dbtest.spring.boot.test.autoconfigure;
 
 import com.github.fartherp.dbtest.dbunit.UseDbUnit;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.TestPropertySource;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,6 +24,7 @@ import org.testng.annotations.Test;
         "spring.datasource.password=root@123",
         "spring.datasource.driverClassName=com.mysql.jdbc.Driver"
 })
+@SpringBootApplication
 public class DBTestIntegrationTest extends SpringBootBaseDbTestCase {
 
     @Autowired

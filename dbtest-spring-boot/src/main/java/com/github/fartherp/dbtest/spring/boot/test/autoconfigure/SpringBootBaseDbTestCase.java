@@ -7,8 +7,9 @@ package com.github.fartherp.dbtest.spring.boot.test.autoconfigure;
 import com.github.fartherp.dbtest.dbunit.BaseBusinessTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.OverrideAutoConfiguration;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTestContextBootstrapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.BootstrapWith;
 
 import javax.sql.DataSource;
 
@@ -19,7 +20,7 @@ import javax.sql.DataSource;
  */
 @OverrideAutoConfiguration(enabled = false)
 @AutoConfigureDBTest
-@SpringBootTest
+@BootstrapWith(SpringBootTestContextBootstrapper.class)
 public class SpringBootBaseDbTestCase extends BaseBusinessTestCase {
     @Autowired
     private DataSource dataSource;
