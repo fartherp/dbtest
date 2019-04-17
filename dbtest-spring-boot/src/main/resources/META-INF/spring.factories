@@ -1,4 +1,4 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.github.fartherp.dbtest.spring.boot.test.autoconfigure.AutoConfigureDBTest=\
 org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
 org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\
 org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
