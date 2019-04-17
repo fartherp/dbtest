@@ -74,12 +74,6 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
     public abstract String getDbunitFile();
 
     private BaseTestCaseDelegate createBaseTestCaseDelegate(String fileType, BaseBusinessTestCase testCase) {
-        if (fileType.equals(UseDbUnit.FileType.CSV)) {
-            return new CsvBaseTestCaseDelegate(testCase);
-        } else if (fileType.equals(UseDbUnit.FileType.XML)) {
-            return new XmlBaseTestCaseDelegate(testCase);
-        } else {
-            throw new RuntimeException("DBUnit错误的文件格式，只支持csv或者xml文件");
-        }
+        return FileTypeEnum.getFileTypeEnum(fileType).function.apply(testCase);
     }
 }

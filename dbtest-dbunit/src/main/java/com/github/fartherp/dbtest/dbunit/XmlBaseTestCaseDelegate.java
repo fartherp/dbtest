@@ -20,21 +20,10 @@ public class XmlBaseTestCaseDelegate extends BaseTestCaseDelegate {
     }
 
     protected IDataSet getDataSet() throws Exception {
-        IDataSet dataSet = null;
-        dataSet = new XmlDataSet(Resources.getResource(testCase.getDbunitFile()).openStream());
-        return dataSet;
+        return new XmlDataSet(Resources.getResource(testCase.getDbunitFile()).openStream());
     }
 
-    protected boolean isUseDBUnit(String[] tables) {
-        if (testCase.getDbunitFile() != null && !"".equals(testCase.getDbunitFile().trim())) {
-            return true;
-        }
-        return false;
-    }
-
-    protected void init(String[] tableNames) throws Exception {
-    }
-
-    protected void destory(String[] tableNames) throws Exception {
+    protected boolean isUseDBUnit(String[] tableNames) {
+        return testCase.getDbunitFile() != null && !"".equals(testCase.getDbunitFile().trim());
     }
 }

@@ -26,10 +26,6 @@ public class DBUnitExecutionListener extends AbstractTestExecutionListener {
             }
             if (annotation != null) {
                 String[] tables = annotation.tables();
-                /*
-                 * if(tables==null||tables.length==0){ tables = new String[1];
-                 * tables[0] = BaseBusinessTestCase.ALL_TABLES; }
-                 */
                 String fileType = annotation.fileType();
                 ((BaseBusinessTestCase) testInstance).beforeForDBUnit(fileType, tables);
             }
@@ -48,10 +44,6 @@ public class DBUnitExecutionListener extends AbstractTestExecutionListener {
             }
             if (annotation != null) {
                 String[] tables = annotation.tables();
-                /*
-                 * if(tables==null||tables.length==0){ tables = new String[1];
-                 * tables[0] = BaseBusinessTestCase.ALL_TABLES; }
-                 */
                 String fileType = annotation.fileType();
                 ((BaseBusinessTestCase) testInstance).afterForDBUnit(fileType, tables);
             }
