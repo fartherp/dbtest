@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. juzhen.io. All rights reserved.
+ * Copyright (c) 2017. CK. All rights reserved.
  */
 
 package com.github.fartherp.dbtest.dbunit;
@@ -19,7 +19,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface UseDbUnit {
-    String value() default "";
 
     String[] tables() default {};
 

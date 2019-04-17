@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. juzhen.io. All rights reserved.
+ * Copyright (c) 2017. CK. All rights reserved.
  */
 
 package com.github.fartherp.dbtest.dbunit;
@@ -17,7 +17,7 @@ import javax.sql.DataSource;
  */
 @ContextConfiguration(locations = { "classpath:/conf/appContext-test.xml" }, inheritLocations = false)
 public class BaseDbTestCase extends BaseBusinessTestCase {
-    protected JdbcTemplate simpleJdbcTemplate;
+    private JdbcTemplate simpleJdbcTemplate;
     private DataSource dataSource;
 
     @Override
@@ -26,7 +26,7 @@ public class BaseDbTestCase extends BaseBusinessTestCase {
     }
 
     @Override
-    protected JdbcTemplate getSimpleJdbcTemplate() {
+    protected JdbcTemplate getJdbcTemplate() {
         return simpleJdbcTemplate;
     }
 

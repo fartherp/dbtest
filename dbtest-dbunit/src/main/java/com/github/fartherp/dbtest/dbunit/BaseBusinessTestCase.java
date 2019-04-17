@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017. juzhen.io. All rights reserved.
+ * Copyright (c) 2017. CK. All rights reserved.
  */
 
 package com.github.fartherp.dbtest.dbunit;
@@ -30,7 +30,7 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
      * @return the number of rows in the table
      */
     protected int countRowsInTable(String tableName) {
-        return JdbcTestUtils.countRowsInTable(getSimpleJdbcTemplate(), tableName);
+        return JdbcTestUtils.countRowsInTable(getJdbcTemplate(), tableName);
     }
 
     /**
@@ -42,7 +42,7 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
      * @return the total number of rows deleted from all specified tables
      */
     protected int deleteFromTables(String... names) {
-        return JdbcTestUtils.deleteFromTables(getSimpleJdbcTemplate(), names);
+        return JdbcTestUtils.deleteFromTables(getJdbcTemplate(), names);
     }
 
     public void beforeForDBUnit(String fileType, String[] tableNames) throws Exception {
@@ -67,7 +67,7 @@ public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTe
 
     protected abstract DataSource getDataSource();
 
-    protected abstract JdbcTemplate getSimpleJdbcTemplate();
+    protected abstract JdbcTemplate getJdbcTemplate();
 
     public abstract String getDbunitDir();
 
