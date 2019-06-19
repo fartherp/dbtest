@@ -37,7 +37,7 @@
     </bean>
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-        <property name="basePackage" value="com.ddjf.rcs.man.mapper"/>
+        <property name="basePackage" value="com.github.fartherp.dbtest.dbunit"/>
         <property name="annotationClass" value="org.apache.ibatis.annotations.Mapper"/>
         <property name="markerInterface" value="org.mybatis.spring.mapper.MapperFactoryBean"/>
     </bean>
