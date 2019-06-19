@@ -1,0 +1,41 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+services:
+  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+
+before_install:
+  - chmod +x mvnw
+  - sudo mysql -e "use mysql; update user set authentication_string=PASSWORD('root') where User='root'; update user set plugin='mysql_native_password';FLUSH PRIVILEGES;"
+  - sudo mysql_upgrade -u root -proot
+  - sudo service mysql restart
+  - sudo mysql -u root -proot -e 'CREATE DATABASE IF NOT EXISTS test_tmp;'
+  - sudo mysql -u root -proot -e 'CREATE TABLE tb_user (id int(11) NOT NULL AUTO_INCREMENT, user_name varchar(50) NOT NULL, password varchar(50) NOT NULL, phone varchar(20) NOT NULL, create_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, update_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, PRIMARY KEY (id) ) ENGINE=InnoDB DEFAULT CHARSET=utf8;'
+
+install: ./mvnw install -DskipTests=true -B -V
+script: ./mvnw clean test -B
+after_success:
+  - ./mvnw clean test jacoco:report coveralls:report -q -DrepoToken="${COVERALLS_TOKEN}"  -Dmaven.test.redirectTestOutputToFile=true
+
+notifications:
+  email: false
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.m2
+
+env:
+  global:
+    - secure: "Ph9nZWzR1KFeR2Rm4PO0fbTz+5vV2HJmSfLzTRKi9Wkm8TYMLJI/omA/5YiIlRgfZ3q7NA6+CV/iUw/Mgap/NvpQIO1yJ+zh6o2SBGQ/q3jLFdtkhAD1+JI97DfR7R3GAC9sVV82pPGkjap6w8LZASXieUggqLR1olal4w2Hv75vH+d+4wCqt6o7tWH1J6LQ2sa/50sykLn+QPlb2NTXXoXHrCKE2+2kmTW1aoouMDxP3hHrnkYeY+n5liO7LP4MNH/nfSyp4e4ImI+uYvfTHvkMQJI3XdWwRTXAu30Bx9ZwtiT6hBqJbb7hNYPr+w+Yr0IWoDrjHUmFsKqv3P61hGSoUXIP7saVWq4lIzT9nBGCg3w3zAGvwtT5r7f6GNKXsvKMpma+oENgxsUeBMbmhbm6yeyo7F/2fBAB5a+yOrQS0AczPg19/oPQw2MPj0eFIwyWHDD2mZ85YedqEqR8mzthyxV0Ek6CT5CUD2Rn8Af+x1pN/JhI4QcLTDTCBDQaSgr/yV6j0OpIGkhdms8AJqUZkvhnmXW2olBg57yElI9JoFhyazZjrpF7xZvGXIKNYKcDv/EjfVWGTZ2frbDURXJUtzFcBvWh/1JQzoC90OhZCP7XB7wIOtGr5ZODgSE4px00+AzvJf0O8EuQht6rSyU1qTAQXimxzASJ0dO26G8="
