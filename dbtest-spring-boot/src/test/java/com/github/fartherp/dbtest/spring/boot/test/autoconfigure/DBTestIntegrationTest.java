@@ -8,8 +8,9 @@ import com.github.fartherp.dbtest.dbunit.UseDbUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.TestPropertySource;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -34,6 +35,6 @@ public class DBTestIntegrationTest extends SpringBootBaseDbTestCase {
     @Test
     public void testFindByUsername() {
         User user = userMapper.findByUsername("name1");
-        Assert.assertEquals(user.getPassword(), "password1");
+        assertEquals(user.getPassword(), "password1");
     }
 }
