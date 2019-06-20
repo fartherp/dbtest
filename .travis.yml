@@ -25,7 +25,7 @@ before_install:
 install: ./mvnw install -DskipTests=true -B -V
 script: ./mvnw clean test -B
 after_success:
-  - ./mvnw clean test jacoco:report coveralls:report -q -DrepoToken="${COVERALLS_TOKEN}"  -Dmaven.test.redirectTestOutputToFile=true
+  - ./mvnw clean test jacoco:report coveralls:report -q -DrepoToken="${COVERALLS_TOKEN}"
 
 notifications:
   email: false
