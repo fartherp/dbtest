@@ -17,9 +17,7 @@ public abstract class BaseTestCaseDelegate {
     protected BaseBusinessTestCase testCase;
 
     public void beforeForDBUnit(String[] tableNames) throws Exception {
-        if (!isUseDBUnit(tableNames)) {
-            throw new RuntimeException("必须指定需要加载的表名");
-        }
+		isUseDBUnit(tableNames);
         init(tableNames);
         testCase.dataSourceDatabaseTester = new DataSourceDatabaseTester(testCase.getDataSource());
         IDataSet dataSet = getDataSet();
@@ -30,9 +28,7 @@ public abstract class BaseTestCaseDelegate {
     }
 
     public void afterForDBUnit(String[] tableNames) throws Exception {
-        if (!isUseDBUnit(tableNames)) {
-            throw new RuntimeException("必须指定需要加载的表名");
-        }
+		isUseDBUnit(tableNames);
         destroy(tableNames);
         testCase.dataSourceDatabaseTester.setTearDownOperation(DatabaseOperation.DELETE);
         testCase.dataSourceDatabaseTester.onTearDown();
@@ -44,9 +40,8 @@ public abstract class BaseTestCaseDelegate {
      * 判断是否可采用DBUnit
      *
      * @param tableNames 表名列表
-     * @return true：可采用，false：不可采用
      */
-    protected abstract boolean isUseDBUnit(String[] tableNames);
+    protected abstract void isUseDBUnit(String[] tableNames) throws RuntimeException;
 
     protected void init(String[] tableNames) throws Exception {
 

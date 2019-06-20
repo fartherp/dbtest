@@ -23,7 +23,9 @@ public class XmlBaseTestCaseDelegate extends BaseTestCaseDelegate {
         return new XmlDataSet(Resources.getResource(testCase.getDbunitFile()).openStream());
     }
 
-    protected boolean isUseDBUnit(String[] tableNames) {
-        return testCase.getDbunitFile() != null && !"".equals(testCase.getDbunitFile().trim());
+    protected void isUseDBUnit(String[] tableNames) {
+    	if (testCase.getDbunitFile() == null || "".equals(testCase.getDbunitFile().trim())) {
+    		throw new RuntimeException("XML文件不能空");
+		}
     }
 }

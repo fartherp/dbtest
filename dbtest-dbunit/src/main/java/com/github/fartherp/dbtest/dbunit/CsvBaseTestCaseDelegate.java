@@ -11,9 +11,9 @@ import org.dbunit.dataset.csv.CsvDataSet;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -32,21 +32,26 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
         return new CsvDataSet(new File(Resources.getResource(testCase.getDbunitDir()).getPath()));
     }
 
-    protected boolean isUseDBUnit(String[] tableNames) {
+    protected void isUseDBUnit(String[] tableNames) {
         if (tableNames == null || tableNames.length == 0) {
-            return false;
+            throw new RuntimeException("方法或类需要指定加载的表名");
         }
         String dirLocal = testCase.getDbunitDir();
         if (dirLocal == null || "".equals(dirLocal.trim())) {
-            return false;
+			throw new RuntimeException("CSV数据目录不存在，目录名：" + dirLocal);
         }
         String dirPath = Resources.getResource(testCase.getDbunitDir()).getFile();;
         File dir = new File(dirPath);
-        if (!dir.exists() || !dir.isDirectory()) {
-            return false;
+        if (!dir.exists()) {
+			throw new RuntimeException("CSV数据目录不存在，目录名：" + dirLocal);
         }
+		if (!dir.isDirectory()) {
+			throw new RuntimeException("目录名不能是文件，目录名：" + dirLocal);
+		}
         File[] files = dir.listFiles((dir1, name) -> name.toLowerCase().endsWith(".csv"));
-        return files != null && files.length != 0;
+		if (files == null || files.length == 0) {
+			throw new RuntimeException("CSV数据不存在：" + Arrays.toString(tableNames));
+		}
     }
 
     /**
@@ -54,7 +59,7 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
      *
      * @param tableNames 表名列表
      */
-    private void initTableOrdering(String[] tableNames) {
+    private void initTableOrdering(String[] tableNames) throws Exception {
         String dirPath = Resources.getResource(testCase.getDbunitDir()).getFile();
         String tableOrderingPath = dirPath + "/" + CsvDataSet.TABLE_ORDERING_FILE;
         File tableOrdering = new File(tableOrderingPath);
@@ -67,8 +72,6 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
             Collections.addAll(tableList, tableNames);
             os = new FileOutputStream(tableOrdering);
             IOUtils.writeLines(tableList, IOUtils.LINE_SEPARATOR_UNIX, os, "UTF-8");
-        } catch (IOException e) {
-            e.printStackTrace();
         } finally {
             IOUtils.closeQuietly(os);
         }

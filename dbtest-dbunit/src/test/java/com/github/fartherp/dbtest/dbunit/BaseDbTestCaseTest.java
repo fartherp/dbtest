@@ -7,6 +7,8 @@ package com.github.fartherp.dbtest.dbunit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.testng.Assert.*;
 
 /**
@@ -17,6 +19,7 @@ import static org.testng.Assert.*;
  *  @project: risk-control-parent
  * </pre>
  */
+@UseDbUnit(tables = "tb_user")
 public class BaseDbTestCaseTest extends BaseDbTestCase {
 
 	@Autowired
@@ -27,5 +30,11 @@ public class BaseDbTestCaseTest extends BaseDbTestCase {
 	public void testFindByUsername() {
 		User user = userMapper.findByUsername("name1");
 		assertEquals(user.getPassword(), "password1");
+	}
+
+	@Test
+	public void testSelectAll() {
+		List<User> list = userMapper.selectAll();
+		assertEquals(list.size(), 3);
 	}
 }
