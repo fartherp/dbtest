@@ -12,20 +12,17 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 /**
- * <pre>
- *  @author: cuiyuqiang
- *  @email: cuiyuqiang@ddjf.com.cn
- *  @date: 2019/6/19 17:39
- *  @project: risk-control-parent
- * </pre>
+ * Created by IntelliJ IDEA.
+ * Author: CK
+ * Date: 2019/6/20
  */
-@UseDbUnit(tables = "tb_user")
-public class BaseDbTestCaseTest extends BaseDbTestCase {
+@UseDbUnit(tables = "tb_user", fileType = "xml")
+public class XmlBaseTestCaseDelegateTest extends BaseDbTestCase {
 
 	@Autowired
 	private UserMapper userMapper;
 
-	@UseDbUnit(tables = "tb_user")
+	@UseDbUnit(tables = "tb_user", fileType = "xml")
 	@Test
 	public void testFindByUsername() {
 		User user = userMapper.findByUsername("name1");

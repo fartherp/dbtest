@@ -2,7 +2,7 @@
  * Copyright (c) 2019. CK. All rights reserved.
  */
 
-package com.github.fartherp.dbtest.spring.boot.test.autoconfigure;
+package com.github.fartherp.dbtest.spring.boot.test.autoconfigure.xml;
 
 import java.util.Date;
 

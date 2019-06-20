@@ -2,9 +2,10 @@
  * Copyright (c) 2019. CK. All rights reserved.
  */
 
-package com.github.fartherp.dbtest.spring.boot.test.autoconfigure;
+package com.github.fartherp.dbtest.spring.boot.test.autoconfigure.csv;
 
 import com.github.fartherp.dbtest.dbunit.UseDbUnit;
+import com.github.fartherp.dbtest.spring.boot.test.autoconfigure.SpringBootBaseDbTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.TestPropertySource;
@@ -18,15 +19,15 @@ import static org.testng.Assert.*;
  * Date: 2019/4/17
  */
 @TestPropertySource(properties = {
-        "mybatis.mapper-locations=classpath:mapper/*Mapper.xml",
+        "mybatis.mapper-locations=classpath:mapper/csv/*Mapper.xml",
         "logging.level.org.springframework.jdbc=debug",
-        "spring.datasource.url=jdbc:mysql://localhost:3306/test_tmp?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true",
+        "spring.datasource.url=jdbc:mysql://10.11.0.156:3306/test_tmp?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true",
         "spring.datasource.username=root",
-        "spring.datasource.password=root",
+        "spring.datasource.password=root@123",
         "spring.datasource.driverClassName=com.mysql.jdbc.Driver"
 })
 @SpringBootApplication
-public class DBTestIntegrationTest extends SpringBootBaseDbTestCase {
+public class CsvDBTestIntegrationTest extends SpringBootBaseDbTestCase {
 
     @Autowired
     private UserMapper userMapper;
