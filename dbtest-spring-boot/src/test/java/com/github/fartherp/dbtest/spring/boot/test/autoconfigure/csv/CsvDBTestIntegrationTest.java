@@ -4,7 +4,7 @@
 
 package com.github.fartherp.dbtest.spring.boot.test.autoconfigure.csv;
 
-import com.github.fartherp.dbtest.dbunit.UseDbUnit;
+import com.github.fartherp.dbtest.spring.UseDbUnit;
 import com.github.fartherp.dbtest.spring.boot.test.autoconfigure.SpringBootBaseDbTestCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +15,9 @@ import static org.testng.Assert.*;
 
 /**
  * Created by IntelliJ IDEA.
- * Author: CK
- * Date: 2019/4/17
+ *
+ * @author CK
+ * @date 2019/4/17
  */
 @TestPropertySource(properties = {
         "mybatis.mapper-locations=classpath:mapper/csv/*Mapper.xml",
