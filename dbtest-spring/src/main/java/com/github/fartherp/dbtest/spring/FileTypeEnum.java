@@ -25,12 +25,18 @@ import java.util.function.Function;
  * @date 2019/4/8
  */
 public enum FileTypeEnum {
+	/**
+	 * csv
+	 */
     CSV("csv", CsvBaseTestCaseDelegate::new),
+	/**
+	 * xml
+	 */
     XML("xml", XmlBaseTestCaseDelegate::new);
 
-    public String fileType;
+    String fileType;
 
-    public Function<BaseBusinessTestCase, BaseTestCaseDelegate> function;
+    Function<BaseBusinessTestCase, BaseTestCaseDelegate> function;
 
     FileTypeEnum(String fileType, Function<BaseBusinessTestCase, BaseTestCaseDelegate> function) {
         this.fileType = fileType;

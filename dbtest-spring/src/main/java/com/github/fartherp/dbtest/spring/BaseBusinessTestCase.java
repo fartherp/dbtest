@@ -28,25 +28,37 @@ import javax.sql.DataSource;
  * @author CK
  * @date: 2016/2/4
  */
-@TestExecutionListeners({ DBUnitExecutionListener.class, TransactionalTestExecutionListener.class })
+@TestExecutionListeners({ DbUnitExecutionListener.class, TransactionalTestExecutionListener.class })
 public abstract class BaseBusinessTestCase extends AbstractTestNGSpringContextTests {
     protected DataSourceDatabaseTester dataSourceDatabaseTester;
 
-    public void beforeForDBUnit(String fileType, String[] tableNames) throws Exception {
+    public void beforeForDbUnit(String fileType, String[] tableNames) throws Exception {
 		BaseTestCaseDelegate testCaseDelegate = createBaseTestCaseDelegate(fileType, this);
-		testCaseDelegate.beforeForDBUnit(tableNames);
+		testCaseDelegate.beforeForDbUnit(tableNames);
     }
 
-    public void afterForDBUnit(String fileType, String[] tableNames) throws Exception {
+    public void afterForDbUnit(String fileType, String[] tableNames) throws Exception {
 		BaseTestCaseDelegate testCaseDelegate = createBaseTestCaseDelegate(fileType, this);
-		testCaseDelegate.afterForDBUnit(tableNames);
+		testCaseDelegate.afterForDbUnit(tableNames);
     }
 
-    protected abstract DataSource getDataSource();
+	/**
+	 * 获取数据源
+	 * @return 数据源
+	 */
+	protected abstract DataSource getDataSource();
 
+	/**
+	 * 获取dbunit数据目录
+	 * @return 数据目录
+	 */
     public abstract String getDbunitDir();
 
-    public abstract String getDbunitFile();
+	/**
+	 * 获取dbunit数据文件
+	 * @return 数据文件
+	 */
+	public abstract String getDbunitFile();
 
     private BaseTestCaseDelegate createBaseTestCaseDelegate(String fileType, BaseBusinessTestCase testCase) {
         return FileTypeEnum.getFileTypeEnum(fileType).function.apply(testCase);

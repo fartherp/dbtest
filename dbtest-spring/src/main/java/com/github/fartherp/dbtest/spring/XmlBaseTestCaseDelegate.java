@@ -31,11 +31,13 @@ public class XmlBaseTestCaseDelegate extends BaseTestCaseDelegate {
         this.testCase = testCase;
     }
 
+    @Override
     protected IDataSet getDataSet() throws Exception {
         return new XmlDataSet(Resources.getResource(testCase.getDbunitFile()).openStream());
     }
 
-    protected void isUseDBUnit(String[] tableNames) {
+    @Override
+    protected void isUseDbUnit(String[] tableNames) {
     	if (testCase.getDbunitFile() == null || "".equals(testCase.getDbunitFile().trim())) {
     		throw new RuntimeException("XML文件不能空");
 		}

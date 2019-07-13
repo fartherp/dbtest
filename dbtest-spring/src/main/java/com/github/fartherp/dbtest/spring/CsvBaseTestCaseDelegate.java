@@ -40,11 +40,13 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
         this.testCase = testCase;
     }
 
+    @Override
     protected IDataSet getDataSet() throws Exception {
         return new CsvDataSet(new File(Resources.getResource(testCase.getDbunitDir()).getPath()));
     }
 
-    protected void isUseDBUnit(String[] tableNames) {
+    @Override
+    protected void isUseDbUnit(String[] tableNames) {
         if (tableNames == null || tableNames.length == 0) {
             throw new RuntimeException("方法或类需要指定加载的表名");
         }
@@ -52,7 +54,7 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
         if (dirLocal == null || "".equals(dirLocal.trim())) {
 			throw new RuntimeException("CSV数据目录不存在，目录名：" + dirLocal);
         }
-        String dirPath = Resources.getResource(testCase.getDbunitDir()).getFile();;
+        String dirPath = Resources.getResource(dirLocal).getFile();
         File dir = new File(dirPath);
         if (!dir.exists()) {
 			throw new RuntimeException("CSV数据目录不存在，目录名：" + dirLocal);
@@ -89,6 +91,7 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
         }
     }
 
+    @Override
     protected void init(String[] tableNames) throws Exception {
         this.initTableOrdering(tableNames);
     }
@@ -105,6 +108,7 @@ public class CsvBaseTestCaseDelegate extends BaseTestCaseDelegate {
         }
     }
 
+    @Override
     protected void destroy(String[] tableNames) throws Exception {
         this.deleteTableOrdering();
     }

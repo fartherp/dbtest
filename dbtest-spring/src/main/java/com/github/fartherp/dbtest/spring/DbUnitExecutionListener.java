@@ -26,7 +26,9 @@ import java.lang.reflect.Method;
  * @author CK
  * @date 2016/2/4
  */
-public class DBUnitExecutionListener extends AbstractTestExecutionListener {
+public class DbUnitExecutionListener extends AbstractTestExecutionListener {
+
+	@Override
     public void beforeTestMethod(TestContext testContext) throws Exception {
         Object testInstance = testContext.getTestInstance();
         Method testMethod = testContext.getTestMethod();
@@ -39,7 +41,7 @@ public class DBUnitExecutionListener extends AbstractTestExecutionListener {
             if (annotation != null) {
                 String[] tables = annotation.tables();
                 String fileType = annotation.fileType();
-                ((BaseBusinessTestCase) testInstance).beforeForDBUnit(fileType, tables);
+                ((BaseBusinessTestCase) testInstance).beforeForDbUnit(fileType, tables);
             }
         }
     }
@@ -57,7 +59,7 @@ public class DBUnitExecutionListener extends AbstractTestExecutionListener {
             if (annotation != null) {
                 String[] tables = annotation.tables();
                 String fileType = annotation.fileType();
-                ((BaseBusinessTestCase) testInstance).afterForDBUnit(fileType, tables);
+                ((BaseBusinessTestCase) testInstance).afterForDbUnit(fileType, tables);
             }
         }
     }

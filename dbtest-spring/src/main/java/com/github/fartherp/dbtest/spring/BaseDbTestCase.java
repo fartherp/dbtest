@@ -40,10 +40,12 @@ public class BaseDbTestCase extends BaseBusinessTestCase {
         this.dataSource = dataSource;
     }
 
+    @Override
     public String getDbunitDir() {
         return "data";
     }
 
+    @Override
     public String getDbunitFile() {
         return "sample_data_cust.xml";
     }

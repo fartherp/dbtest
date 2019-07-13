@@ -28,8 +28,8 @@ import org.dbunit.operation.DatabaseOperation;
 public abstract class BaseTestCaseDelegate {
     protected BaseBusinessTestCase testCase;
 
-    public void beforeForDBUnit(String[] tableNames) throws Exception {
-		isUseDBUnit(tableNames);
+    public void beforeForDbUnit(String[] tableNames) throws Exception {
+		isUseDbUnit(tableNames);
         init(tableNames);
         testCase.dataSourceDatabaseTester = new DataSourceDatabaseTester(testCase.getDataSource());
         IDataSet dataSet = getDataSet();
@@ -39,21 +39,26 @@ public abstract class BaseTestCaseDelegate {
         testCase.dataSourceDatabaseTester.onSetup();
     }
 
-    public void afterForDBUnit(String[] tableNames) throws Exception {
-		isUseDBUnit(tableNames);
+    public void afterForDbUnit(String[] tableNames) throws Exception {
+		isUseDbUnit(tableNames);
         destroy(tableNames);
         testCase.dataSourceDatabaseTester.setTearDownOperation(DatabaseOperation.DELETE);
         testCase.dataSourceDatabaseTester.onTearDown();
     }
 
-    protected abstract IDataSet getDataSet() throws Exception;
+	/**
+	 * this get IDataSet
+	 * @return IDataSet
+	 * @throws Exception this Exception
+	 */
+	protected abstract IDataSet getDataSet() throws Exception;
 
     /**
      * 判断是否可采用DBUnit
      *
      * @param tableNames 表名列表
      */
-    protected abstract void isUseDBUnit(String[] tableNames) throws RuntimeException;
+    protected abstract void isUseDbUnit(String[] tableNames);
 
     protected void init(String[] tableNames) throws Exception {
 

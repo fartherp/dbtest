@@ -41,10 +41,12 @@ public class SpringBootBaseDbTestCase extends BaseBusinessTestCase {
         return dataSource;
     }
 
+    @Override
     public String getDbunitDir() {
         return "data";
     }
 
+    @Override
     public String getDbunitFile() {
         return "sample_data_cust.xml";
     }
