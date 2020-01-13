@@ -22,6 +22,10 @@ addons:
     packages:
       - mysql-server
       - mysql-client
+  sonarcloud:
+    organization: "fartherp"
+    token:
+      secure: "UhPCwM765vZQJywl9+7zrRsnzEsdwf1E32AvSpXXQse9I/WJwWbAg+oNot0s1aTK8ZOxxAq73gW9EZS6EqnYsNBCnOH3MpIuaTGTZ2YdWPJQX5ji6lQa9n4vYMZ4B3f1D0bB4LMc1uLNe3irefkN5KFVGZ7s0nnESo/R7c4FyIKdH44BqOdzMY9n8VJ5Xz5fq5xKdAIzTzzz1d4VU/mkCVLcnKNwqUnIhztdrEnG8x/atTP2xnXBqsS2IYnIQysS3ruRsGWr4JA/GQArCV+jceO6oE/qDUhRwUpcZi7wJAw4/84n5I4LPxX5B9902RGvDW9XXYLRiX0jGs3KP1dkSNOCvk2cCY9ER5cTTyw3IMJnn2OhWkzJMBkta+XH6u4xKhib3bYR/28enApul21kzg6HSUphPwQsodpTL5mqXX7GgcQJ87qyZ6F447HFKjfghLnSLuUf4CkJY+sAwwSrMlCouajFPVSTpYNKA7qiLlm1qX+XQPYXkV0Z3NSI9HUwAM7kJdsSNxRdv3TE/Z335P5uwoW62M9RXU0hk0911e8Pyle8rkeuIcFDienTFJertmr2VjzW+R6KI1LDfJUuT28JdUvmCJUtSXewPV9dgOcgabi6MI4xjIdWCiWK9kk/RogHi004URPTA4jzImTETF1chY0wOaUiKc1UCSuUs+M="
 
 before_install:
   - chmod +x mvnw
