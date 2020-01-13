@@ -48,8 +48,8 @@ if [ $TRAVIS_REPO_SLUG == "fartherp/dbtest" ] && [ "$TRAVIS_BRANCH" == "master" 
     # echo -e "Successfully deploy site under Travis job ${TRAVIS_JOB_NUMBER}"
 
     # Deploy to sonar
-    # ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.projectKey=fartherp_dbtest -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=3cf09ae6f2c76711233ed48ff297ff532986e874
-    # echo -e "Successfully ran Sonar integration under Travis job ${TRAVIS_JOB_NUMBER}"
+    ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dsonar.projectKey=fartherp_dbtest -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=3cf09ae6f2c76711233ed48ff297ff532986e874
+    echo -e "Successfully ran Sonar integration under Travis job ${TRAVIS_JOB_NUMBER}"
   else
     echo "Java Version does not support additonal activity for travis CI"
   fi
