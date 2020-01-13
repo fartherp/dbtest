@@ -15,9 +15,9 @@
  */
 package com.github.fartherp.dbtest.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
@@ -35,7 +35,7 @@ public class BaseDbTestCase extends BaseBusinessTestCase {
         return dataSource;
     }
 
-    @Resource(name = "dataSource")
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
