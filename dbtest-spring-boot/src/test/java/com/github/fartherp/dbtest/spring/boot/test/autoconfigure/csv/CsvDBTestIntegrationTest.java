@@ -32,7 +32,7 @@ import static org.testng.Assert.*;
  */
 @TestPropertySource(properties = {
         "mybatis.mapper-locations=classpath:mapper/csv/*Mapper.xml",
-        "logging.level.org.springframework.jdbc=debug",
+        "logging.level.org.springframework.jdbc=info",
         "spring.datasource.url=jdbc:mysql://localhost:3306/test_tmp?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true",
         "spring.datasource.username=root",
         "spring.datasource.password=root",
