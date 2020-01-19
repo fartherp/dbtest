@@ -22,7 +22,7 @@
 	<parent>
 		<groupId>com.github.fartherp</groupId>
 		<artifactId>fartherp-parent</artifactId>
-		<version>1-SNAPSHOT</version>
+		<version>1</version>
 		<relativePath />
 	</parent>
 
@@ -64,6 +64,14 @@
         </license>
     </licenses>
 
+	<issueManagement>
+		<system>GitHub Issue Management</system>
+		<url>https://github.com/fartherp/dbtest/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/fartherp/dbtest</url>
+	</ciManagement>
     <distributionManagement>
         <repository>
             <id>oss</id>
