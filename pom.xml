@@ -28,7 +28,7 @@
 
     <artifactId>dbtest</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
 
     <name>dbtest</name>
     <url>https://github.com/fartherp/dbtest</url>
@@ -54,7 +54,7 @@
         <connection>scm:git:git@github.com:fartherp/dbtest.git</connection>
         <developerConnection>scm:git:git@github.com:fartherp/dbtest.git</developerConnection>
         <url>https://github.com/fartherp/dbtest</url>
-        <tag>v1.0.5</tag>
+        <tag>HEAD</tag>
     </scm>
     <licenses>
         <license>
